@@ -1,4 +1,5 @@
 package oit.is.team2.kaizi.work5.controller;
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,58 +36,59 @@ public class Sample51Controller {
     return "sample51.html";
   }
 
-  // @GetMapping("step3")
-  // @Transactional
-  // public String sample53(@RequestParam Integer id, ModelMap model) {
-  //   // 削除対象のフルーツを取得
-  //   Fruit fruit3 = fMapper.selectById(id);
-  //   model.addAttribute("fruit3", fruit3);
+  @GetMapping("step3")
+  @Transactional
+  public String sample53(@RequestParam Integer id, ModelMap model) {
+    // // 削除対象のフルーツを取得
+    Fruit fruit3 = fMapper.selectById(id);
+    model.addAttribute("fruit3", fruit3);
 
-  //   // 削除
-  //   fMapper.deleteById(id);
+    // // 削除
+    fMapper.deleteById(id);
 
-  //   // 削除後のフルーツリストを取得
-  //   ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
-  //   model.addAttribute("fruits2", fruits2);
-  //   return "sample51.html";
-  // }
+    // // 削除後のフルーツリストを取得
+    ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
+    model.addAttribute("fruits2", fruits2);
+    return "sample51.html";
+  }
 
   // @GetMapping("step4")
   // @Transactional
   // public String sample54(@RequestParam Integer id, ModelMap model) {
-  //   // 編集対象のフルーツを取得
-  //   Fruit fruit4 = fMapper.selectById(id);
-  //   model.addAttribute("fruit4", fruit4);
+  // // 編集対象のフルーツを取得
+  // Fruit fruit4 = fMapper.selectById(id);
+  // model.addAttribute("fruit4", fruit4);
 
-  //   // フルーツリストを取得
-  //   ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
-  //   model.addAttribute("fruits2", fruits2);
-  //   return "sample51.html";
+  // // フルーツリストを取得
+  // ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
+  // model.addAttribute("fruits2", fruits2);
+  // return "sample51.html";
   // }
 
   // /**
-  //  * IDをクエリParamで，果物の名前と値段をフォームで受け取り，DBを更新する
-  //  *
-  //  * @param name
-  //  * @param price
-  //  * @param model
-  //  * @return
-  //  */
+  // * IDをクエリParamで，果物の名前と値段をフォームで受け取り，DBを更新する
+  // *
+  // * @param name
+  // * @param price
+  // * @param model
+  // * @return
+  // */
   // @PostMapping("step5")
-  // public String sample55(@RequestParam Integer id, @RequestParam String name, @RequestParam Integer price,
-  //     ModelMap model) {
-  //   System.out.println("step5");
-  //   System.out.println(id);
-  //   System.out.println(name);
-  //   System.out.println(price);
-  //   Fruit fruit = new Fruit(id, name, price);
-  //   // update
-  //   fMapper.updateById(fruit);
-  //   // フルーツリストを取得
-  //   ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
-  //   model.addAttribute("fruits2", fruits2);
+  // public String sample55(@RequestParam Integer id, @RequestParam String name,
+  // @RequestParam Integer price,
+  // ModelMap model) {
+  // System.out.println("step5");
+  // System.out.println(id);
+  // System.out.println(name);
+  // System.out.println(price);
+  // Fruit fruit = new Fruit(id, name, price);
+  // // update
+  // fMapper.updateById(fruit);
+  // // フルーツリストを取得
+  // ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
+  // model.addAttribute("fruits2", fruits2);
 
-  //   return "sample51.html";
+  // return "sample51.html";
   // }
 
 }
