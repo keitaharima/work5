@@ -13,6 +13,38 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class Sample3AuthConfiguration {
+  /**
+   * 認可処理に関する設定（認証されたユーザがどこにアクセスできるか）
+   *
+   * @param http
+   * @return
+   * @throws Exception
+   */
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http.formLogin(login -> login
+        .permitAll())
+        .logout(logout -> logout
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/")) // ログアウト後に / にリダイレクト
+        .authorizeHttpRequests(authz -> authz
+            // .requestMatchers(AntPathRequestMatcher.antMatcher("/sample3/**"))
+            // .authenticated() // /sample3/以下は認証済みであること
+            // .requestMatchers(AntPathRequestMatcher.antMatcher("/sample4/**"))
+            // .authenticated() // /sample4/以下は認証済みであること
+            .requestMatchers(AntPathRequestMatcher.antMatcher("/sample5/**"))
+            .authenticated() // /sample4/以下は認証済みであること
+            // .requestMatchers(AntPathRequestMatcher.antMatcher("/sample58*"))
+            // .authenticated() // /sample4/以下は認証済みであること
+            .requestMatchers(AntPathRequestMatcher.antMatcher("/**"))
+            .permitAll())// 上記以外は全員アクセス可能
+        .csrf(csrf -> csrf
+            .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/*")))// h2-console用にCSRF対策を無効化
+        .headers(headers -> headers
+            .frameOptions(frameOptions -> frameOptions
+                .sameOrigin()));
+    return http.build();
+  }
 
   /**
    * 認証処理に関する設定（誰がどのようなロールでログインできるか）
