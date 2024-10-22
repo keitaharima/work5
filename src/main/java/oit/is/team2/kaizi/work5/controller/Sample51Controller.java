@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// import oit.is.inudaisuki.springboot_samples.model.Fruit;
-// import oit.is.inudaisuki.springboot_samples.model.FruitMapper;
+import oit.is.team2.kaizi.work5.model.Fruit;
+import oit.is.team2.kaizi.work5.model.FruitMapper;
 
 /**
  * /sample5へのリクエストを扱うクラス authenticateの設定をしていれば， /sample5へのアクセスはすべて認証が必要になる
@@ -20,20 +20,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/sample5")
 public class Sample51Controller {
 
-  // @Autowired
-  // FruitMapper fMapper;
+  @Autowired
+  FruitMapper fMapper;
 
   @GetMapping("step1")
   public String sample51() {
     return "sample51.html";
   }
 
-  // @GetMapping("step2")
-  // public String sample52(ModelMap model) {
-  //   ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
-  //   model.addAttribute("fruits2", fruits2);
-  //   return "sample51.html";
-  // }
+  @GetMapping("step2")
+  public String sample52(ModelMap model) {
+    ArrayList<Fruit> fruits2 = fMapper.selectAllFruit();
+    model.addAttribute("fruits2", fruits2);
+    return "sample51.html";
+  }
 
   // @GetMapping("step3")
   // @Transactional
